@@ -1,33 +1,39 @@
+#pragma GCC optimize("O3")
+//Manacher's Algorithm
 class Solution {
 public:
-    int check(string &s, int L, int R)
-    {
-        while(L>=0 and R<s.length() and s[L]==s[R])
-        {
-            L--;
-            R++;
-        }
-        return R-L-1;
-    }
-    
     string longestPalindrome(string s) {
-        
-        int ans = 0, st=0;
-        int n = s.length();
-        
-        for(int i = 0;i<n;i++)
-        {
-            int len1 = check(s, i,i);
-            int len2 = check(s, i, i+1);
-            
-            int len = max(len1, len2);
-            
-            if(len> ans)
-            {
-                ans = len;
-                st = i-(len-1)/2;
+        string t="_";
+        for (char c: s){
+            t.push_back(c);
+            t.push_back('_');
+        }
+
+        int n=t.size();
+        vector<int> pRad(n, 0);
+        int c=0, radius=0;
+        #pragma unroll
+        for(int i=0; i<n; i++){
+            int reflex=2*c-i;
+            if (i<radius) pRad[i]=min(radius-i, pRad[reflex]);
+            while(i+1+pRad[i]<n && i-1-pRad[i]>=0 &&
+                t[i+1+pRad[i]]==t[i-1-pRad[i]])
+                    pRad[i]++;
+            if (i+pRad[i]>radius){
+                c=i;
+                radius=i+pRad[i];
             }
         }
-        return s.substr(st, ans);
+
+        int maxLen=0, cIdx=0;
+        #pragma unroll
+        for(int i=0; i<n; i++)
+            if (pRad[i]>maxLen){
+                maxLen=pRad[i];
+                cIdx=i;
+            }
+        
+        int l=(cIdx-maxLen)/2;
+        return s.substr(l, maxLen);
     }
 };
