@@ -13,9 +13,7 @@ public:
     ListNode* mergeKLists(vector<ListNode*>& v) {
         int n=v.size();
         if(v.size()==0) return NULL;
-        for(int i=1;i<n;i++){
-            v[0]=mergeTwoLists(v[0],v[i]);
-        }
+        for(int i=1;i<n;i++) v[0]=mergeTwoLists(v[0],v[i]);
         return v[0];
     }
 };
