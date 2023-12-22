@@ -1,22 +1,21 @@
 class Solution {
 public:
-    int solve(vector<int> nums,int i,vector<int> &dp){
-        if(i>=nums.size()) return 0;
-        if(dp[i]!=-1) return dp[i];
-        int take=solve(nums,i+2,dp)+nums[i];
-        int nottake=solve(nums,i+1,dp);
-        return dp[i]=max(take,nottake);
-    }
-    int rob(vector<int>& arr) {
-        int n=arr.size();
-        vector<int> dp(n+1,-1),dp1(n+1,-1),arr1,arr2;
-        if(n==1) return arr[0];
-        for(int i=0; i<n; i++){
-            if(i!=0) arr1.push_back(arr[i]);
-            if(i!=n-1) arr2.push_back(arr[i]);
+    int rob(vector<int>& v) {
+        int n=v.size();vector<int> dp(n+1,0),ans,ans2;
+        if(n==1) return v[0];
+        for(int i=0;i<n;i++){
+            if(i!=0) ans.push_back(v[i]);
+            if(i!=n-1) ans2.push_back(v[i]);
         }
-        long long int ans1 = solve(arr1,0,dp);
-        long long int ans2 = solve(arr2,0,dp1);
-        return max(ans1,ans2);
+        for(int i=2;i<=n;i++) dp[i]=max(dp[i-1],ans[i-2]+dp[i-2]);
+        int result=dp[n];
+
+        for(int i=0;i<n-1;i++) ans2.push_back(v[i]);
+
+        fill(dp.begin(),dp.end(),0);
+        for(int i=2;i<=n;i++) dp[i]=max(dp[i-1],ans2[i-2]+dp[i-2]);
+
+        result=max(result,dp[n]);
+        return result;
     }
 };
