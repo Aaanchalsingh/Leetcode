@@ -1,7 +1,7 @@
 class Solution {
 public:
     int rob(vector<int>& v) {
-        int n=v.size();vector<int> dp(n+1,0),ans,ans2;
+        int n=v.size();vector<int> dp(n+1,0),ans;
         if(n==1) return v[0];
         for(int i=0;i<n;i++) if(i!=0) ans.push_back(v[i]);
         for(int i=2;i<=n;i++) dp[i]=max(dp[i-1],ans[i-2]+dp[i-2]);
