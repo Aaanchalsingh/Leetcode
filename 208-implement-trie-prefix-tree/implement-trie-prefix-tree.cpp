@@ -1,23 +1,49 @@
+class Node{
+    public:
+    char data;
+    bool ends;
+    Node*characters[26];
+    Node(char d) {
+        this->data=d;
+        for(int i=0;i<26;i++) characters[i]=NULL;
+        this->ends=false;
+    }
+};
 class Trie {
 public:
-    vector<string> v;
-    Trie() {
-        
+    Node*root;
+    Trie(){
+       root= new Node('\0'); 
     }
-    
-    void insert(string word) {
-        v.push_back(word);
-    }
-    
-    bool search(string word) {
-        return find(v.begin(),v.end(),word)!=v.end();
-    }
-    
-    bool startsWith(string prefix) {
-        for(auto x:v){
-            if(x.starts_with(prefix))
-                return true;
+    void insert(string s) {
+        int n=s.size();
+        Node*cur=root;
+        for(int i=0;i<n;i++){
+            if(cur->characters[s[i]-'a']==NULL){
+                Node*temp=new Node(s[i]-'a');
+                cur->characters[s[i]-'a']=temp;
+            }
+            cur=cur->characters[s[i]-'a'];
         }
-        return false; 
+        cur->ends=true;
+    }
+    
+    bool search(string s) {
+        int n=s.size();
+        Node*cur=root;
+        for(int i=0;i<n;i++){
+            if(cur->characters[s[i]-'a']==NULL) return false;
+            cur=cur->characters[s[i]-'a'];
+        }
+        return cur->ends;
+    }
+    bool startsWith(string s) {
+        int n=s.size();
+        Node*cur=root;
+        for(int i=0;i<n;i++){
+            if(cur->characters[s[i]-'a']==NULL) return false;
+            cur=cur->characters[s[i]-'a'];
+        }
+        return true;
     }
 };
