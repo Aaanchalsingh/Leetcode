@@ -15,7 +15,6 @@ public:
             p=p->next;
         }
         if(q->next) q->next=q->next->next;
-        else return NULL;
         return head;
     }
 };
