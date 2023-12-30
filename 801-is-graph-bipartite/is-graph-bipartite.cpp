@@ -14,10 +14,8 @@ public:
         int r=graph.size();
         vector<int> color(r+1,-1);
         for(int i=0;i<r;i++)
-            if(color[i]==-1){
+            if(color[i]==-1)
                 if(!dfs(i,0,color,graph)) return false;
-            
-        }
         return true;
     }
 };
