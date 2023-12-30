@@ -4,7 +4,7 @@ public:
         vector<vector<int>> dp(K+2, vector<int>(n, 1e9));
         for(int i = 0; i <= K+1; i++) dp[i][src] = 0;
         for(int i = 1; i <= K+1; i++){
-            for(auto &f: flights){
+            for(auto f: flights){
                 int u = f[0];
                 int v = f[1];
                 int w = f[2];
