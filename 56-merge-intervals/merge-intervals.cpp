@@ -7,8 +7,9 @@ public:
     
     for(int i = 1; i < v.size(); i++) {
         auto top = st.top();
-        if(v[i][0] <= top.second)
-            st.top().second = max(top.second, v[i][1]);
+        int end  = top.second;
+        if(v[i][0] <= end)
+            st.top().second = max(end,v[i][1]);
         else st.push({v[i][0], v[i][1]});
     }
     vector<vector<int>> result;
