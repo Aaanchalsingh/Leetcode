@@ -2,7 +2,7 @@ class Solution {
 public:
     int maximumLength(string s) {
         int ans=0,n=s.size();string temp="";
-        unordered_map<string,int> mp;
+        map<string,int> mp;
         for(int i=0;i<n;i++){
             temp="";
             temp+=s[i];
