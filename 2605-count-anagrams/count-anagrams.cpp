@@ -4,14 +4,18 @@ public:
     ll mod = 1e9 + 7;
     ll fact[100005];
 
-    ll power(ll x, ll y) {
+    ll power(ll a, ll b) {
         ll res = 1;
-        x = x % mod;
-        while (y > 0) {
-            if (y & 1)
-                res = (res * x) % mod;
-            y = y >> 1;
-            x = (x * x) % mod;
+        a = a % mod;
+        while (b > 0) {
+            if (b & 1){
+                res = (res * a) % mod;
+                b--;
+            }
+            else{
+                b = b >> 1;
+                a = (a * a) % mod;
+            }
         }
         return res;
     }
