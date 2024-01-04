@@ -4,7 +4,7 @@ public:
         if(n <= 0){
             return false;
         }
-        long long int k=pow(3,19);
-        return ((k) % n == 0);
+        int k=pow(3,19);
+        return (k % n == 0);
     }
 };
