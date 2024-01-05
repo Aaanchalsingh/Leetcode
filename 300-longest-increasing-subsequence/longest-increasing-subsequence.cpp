@@ -3,7 +3,6 @@ public:
     int lengthOfLIS(vector<int>& v) {
         int n=v.size();
         vector<int> dp(n+1,1);
-        vector<int> cur(n+1,0);
         for(int i=0;i<n;i++){
             for(int j=i-1;j>=0;j--){
                 if(v[i]>v[j]){
