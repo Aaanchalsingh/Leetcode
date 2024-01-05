@@ -1,13 +1,9 @@
 class Solution {
 public:
-    int kthSmallest(vector<vector<int>>& v, int k) {
-        int m=v.size(),n=v[0].size();vector<int> ans;
-        for(int i=0;i<m;i++){
-            for(int j=0;j<n;j++){
-                ans.push_back(v[i][j]);
-            }
-        }
-        sort(ans.begin(),ans.end());
-        return ans[k-1];
+    int kthSmallest(vector<vector<int>>& matrix, int k) {
+        priority_queue<int, vector<int>, greater<int>> pq; int n = matrix.size(); 
+        for(int i=0; i<n; i++) for(int j=0; j<n; j++) pq.push(matrix[i][j]); 
+        for(int i=1; i<k; i++) pq.pop(); 
+        return pq.top(); 
     }
 };
