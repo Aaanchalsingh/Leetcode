@@ -1,22 +1,18 @@
 class Solution {
 public:
-    void dfs(int i, int j,vector<vector<int>>& image, int color,int sr){
-        int n=image.size();
-        int m=image[0].size();
-        if(i<0||j<0) return;
-        if(i>=n||j>=m) return ;
-        if(image[i][j]!=sr) return;
-        image[i][j]=color; 
-        dfs(i-1,j,image,color,sr);
-        dfs(i+1,j,image,color,sr);
-        dfs(i,j-1,image,color,sr);
-        dfs(i,j+1,image,color,sr);
-
+    void dfs(int i, int j, int row, int col, vector<vector<int>>& image,int color,int prev) {
+        if (i >= 0 && j >= 0 && i < row && j < col && image[i][j] == prev) {
+            image[i][j] = color;
+            dfs(i + 1, j, row, col, image,color,prev);
+            dfs(i - 1, j, row, col, image,color,prev);
+            dfs(i, j + 1, row, col, image,color,prev);
+            dfs(i, j - 1, row, col, image,color,prev);
+        }
     }
-    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
-        if(sr>=0&&sr<image.size()&&sc>=0&&sc<image[0].size()){
-            if(image[sr][sc]==color) return image;
-            dfs(sr,sc,image,color,image[sr][sc]);
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc,int color) {  
+        if(sr<image.size()&&sc<image[0].size()&&image[sr][sc]!=color){
+            int prev=image[sr][sc];
+            dfs(sr, sc,image.size(),image[0].size(), image,color,prev);
         }
         return image;
     }
