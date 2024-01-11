@@ -1,14 +1,12 @@
 class Solution {
 public:
-     string getHint(string sec, string gue) {
+     string getHint(string secret, string guess) {
         string ans = "";
-        int bulls = 0, cow = 0, n = sec.length(), g = gue.length();
-        vector<char> secret(sec.begin(), sec.end()),guess(gue.begin(), gue.end());
+        int bulls = 0, cow = 0, n = secret.size();
         unordered_map<char, int> p;
         for (int i = 0; i < n; i++) {
             if (secret[i] == guess[i]) {
                 secret[i] = '@';
-                guess[i] = '@';
                 bulls++;
             }
             else p[guess[i]]++;
