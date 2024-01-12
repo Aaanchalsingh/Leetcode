@@ -1,11 +1,12 @@
 class Solution {
 public:
     int distributeCandies(vector<int>& v) {
-        unordered_map<int,int> mp;
-        int n=v.size();
-        for(int i=0;i<n;i++) mp[v[i]]++;
-        int k=mp.size();
-        if(k==0) return -1;
+        unordered_set<int> st;
+        int n=v.size(),k=0;
+        for(int i=0;i<n;i++){
+            if(st.count(v[i])==0) k++;
+            st.insert(v[i]);
+        }
         if((n/2)%(k)==0) return k;
         if((n/2)>k) return k%(n/2);
         return (n/2)%(k);
