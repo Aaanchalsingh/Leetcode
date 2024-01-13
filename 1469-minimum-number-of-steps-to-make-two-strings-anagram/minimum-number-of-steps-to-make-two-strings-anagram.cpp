@@ -9,9 +9,7 @@ public:
             v[x-'a']--;
         }
         for(int i=0;i<v.size();i++){
-            if(v[i]<0){
-                count+=abs(v[i]);
-            }
+            if(v[i]<0) count+=abs(v[i]);
         }
         return count;
     }
