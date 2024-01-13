@@ -1,7 +1,7 @@
 class Solution {
 public:
     int minSteps(string s, string t) {
-        vector<int> v(276,0);int count=0;
+        vector<int> v(26,0);int count=0;
         for(auto x:s){
             v[x-'a']++;
         }
