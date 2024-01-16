@@ -9,8 +9,6 @@ public:
             if(!s.empty()) left[i]=s.top()+1;
             s.push(i);
         }
-        for(auto x: left) cout<<x<<" ";
-        cout<<endl;
         s=stack<int>();
         for(int i=n-1;i>=0;i--){
             while(!s.empty()&&v[s.top()]>=v[i]) s.pop();
