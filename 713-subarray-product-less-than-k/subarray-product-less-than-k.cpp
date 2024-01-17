@@ -8,6 +8,7 @@ public:
             while(j<n && product >= k){
                 product/=v[j++];
             }
+            //ADD THE CURRENT WINDOW SIZE ALWAYS 
             count+=i-j+1;
         }
         return count;
