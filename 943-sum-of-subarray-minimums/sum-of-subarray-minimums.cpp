@@ -1,43 +1,37 @@
-using ll = long long;
-const int MOD = 1e9 + 7;
-
 class Solution {
 public:
-    int sumSubarrayMins(vector<int>& nums) {
-        int length = nums.size();
-        vector<int> left(length, -1);
-        vector<int> right(length, length);
-        stack<int> stk;
+   const int MOD = 1000000007;
 
-        for (int i = 0; i < length; ++i) {
-            while (!stk.empty() && nums[stk.top()] >= nums[i]) {
-                stk.pop();
-            }
-            if (!stk.empty()) {
-                left[i] = stk.top();
-            }
-            stk.push(i);
+int sumSubarrayMins(std::vector<int>& arr) {
+    int n = arr.size();
+    std::stack<int> s1, s2;
+    std::vector<long long> left(n), right(n, n);
+
+    // Calculate left boundaries
+    for (int i = 0; i < n; ++i) {
+        while (!s1.empty() && arr[s1.top()] > arr[i]) {
+            s1.pop();
         }
-
-        stk = stack<int>();
-
-        for (int i = length - 1; i >= 0; --i) {
-            while (!stk.empty() && nums[stk.top()] > nums[i]) {
-                stk.pop();
-            }
-            if (!stk.empty()) {
-                right[i] = stk.top();
-            }
-            stk.push(i);
-        }
-
-        ll sum = 0;
-
-        for (int i = 0; i < length; ++i) {
-            sum += static_cast<ll>(i - left[i]) * (right[i] - i) * nums[i] % MOD;
-            sum %= MOD;
-        }
-
-        return sum;
+        left[i] = s1.empty() ? i + 1 : i - s1.top();
+        s1.push(i);
     }
+
+    // Calculate right boundaries
+    for (int i = n - 1; i >= 0; --i) {
+        while (!s2.empty() && arr[s2.top()] >= arr[i]) {
+            s2.pop();
+        }
+        right[i] = s2.empty() ? n - i : s2.top() - i;
+        s2.push(i);
+    }
+
+    // Calculate the final sum
+    long long result = 0;
+    for (int i = 0; i < n; ++i) {
+        result = (result + arr[i] * left[i] * right[i]) % MOD;
+    }
+
+    return static_cast<int>(result);
+}
+
 };
