@@ -1,14 +1,18 @@
 class Solution {
 public:
-    static bool compare(int a,int b){
-        return to_string(a)+to_string(b)>to_string(b)+to_string(a);
+    static bool cmp(int a, int b) {
+        string x = to_string(a);
+        string y = to_string(b);
+        return (x + y) > (y + x);
     }
-    string largestNumber(vector<int>& arr) {
-        sort(arr.begin(),arr.end(),compare);
+    string largestNumber(vector<int>& v) {
+        sort(v.begin(), v.end(), cmp);
         string ans = "";
-        for(int i = 0;i<arr.size();i++)
-        ans+=to_string(arr[i]);
-        if(ans[0]=='0') return "0";
-        return ans; 
+        if (v[0] == 0)
+            return "0";
+        for (auto x : v)
+            ans += to_string(x);
+        return ans;
     }
-};
+}
+;
