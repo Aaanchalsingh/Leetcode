@@ -5,11 +5,8 @@ public:
     double median=0;
     MedianFinder() { median = 0; }
     void addNum(int num) {
-        if (max_heap.empty() || num <= max_heap.top()) {
-            max_heap.push(num);
-        } else {
-            min_heap.push(num);
-        }
+        if (max_heap.empty() || num <= max_heap.top()) max_heap.push(num);
+        else min_heap.push(num);
         int maxsize = max_heap.size();
         int minsize = min_heap.size();
         if (abs(maxsize - minsize) > 1) {
