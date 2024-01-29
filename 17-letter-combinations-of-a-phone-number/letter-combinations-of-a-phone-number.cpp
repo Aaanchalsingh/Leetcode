@@ -1,23 +1,24 @@
 class Solution {
 public:
-    std::vector<std::string> letterCombinations(std::string digits) {
-        if (digits.empty()) return {};
-
-        std::string phone_map[] = {"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
-        std::vector<std::string> output;
-        backtrack("", digits, phone_map, output);
-        return output;
-    }
-
-private:
-    void backtrack(std::string combination, std::string next_digits, std::string phone_map[], std::vector<std::string>& output) {
-        if (next_digits.empty()) {
-            output.push_back(combination);
-        } else {
-            std::string letters = phone_map[next_digits[0] - '2'];
-            for (char letter : letters) {
-                backtrack(combination + letter, next_digits.substr(1), phone_map, output);
-            }
+    void solve(vector<string> v, string input, int i, vector<string>& ans,
+               string output) {
+        if (i == input.size()) {
+            ans.push_back(output);
+            return;
         }
+        int a = input[i] - '0';
+        if (a == 0)
+            return solve(v, input, i + 1, ans, output);
+        for (auto x : v[a]) {
+            solve(v, input, i + 1, ans, output + x);
+        }
+    }
+    vector<string> letterCombinations(string digits) {
+        if(digits.size()==0) return {};
+        vector<string> v{"","",    "abc",  "def", "ghi", "jkl",
+                         "mno", "pqrs", "tuv", "wxyz"};
+        vector<string> ans;
+        solve(v, digits, 0, ans, "");
+        return ans;
     }
 };
