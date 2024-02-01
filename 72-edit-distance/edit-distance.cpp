@@ -7,7 +7,6 @@ public:
             dp[0][i] = i;
         for (int i = 0; i <= m; i++)
             dp[i][0] = i;
-
         for (int i = 1; i <= m; i++) {
             for (int j = 1; j <= n; j++) {
                 if (w1[i - 1] == w2[j - 1])
