@@ -6,9 +6,9 @@ public:
             result.push_back(ans);
             return;
         }
-        if (i >= v.size())
+        if (i < 0)
             return;
-        solve(i + 1, v, target, ans, result);
+        solve(i - 1, v, target, ans, result);
         if (target - v[i] >= 0) {
             ans.push_back(v[i]);
             solve(i, v, target - v[i], ans, result);
@@ -19,7 +19,7 @@ public:
     vector<vector<int>> combinationSum(vector<int>& v, int target) {
         vector<vector<int>> result;
         vector<int> ans;
-        solve(0, v, target, ans, result);
+        solve(v.size()-1, v, target, ans, result);
         return result;
     }
 };
