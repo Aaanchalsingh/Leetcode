@@ -1,15 +1,15 @@
 class Solution {
 public:
     bool isposs(int n, int k, vector<int>& v, int mid) {
-        int sum = 0, days = 0;
+        int sum = 0;
         for (int i = 0; i < n; i++) {
-            sum += v[i];
-            if (sum > mid) {
+            if (sum +v[i] > mid) {
                 k--;
-                sum = v[i];
+                sum = 0;
             }
+            sum += v[i];
         }
-        return k>0;
+        return k > 0;
     }
     int shipWithinDays(vector<int>& v, int days) {
         int low = *max_element(v.begin(), v.end()), mid = 0, ans = -1;
