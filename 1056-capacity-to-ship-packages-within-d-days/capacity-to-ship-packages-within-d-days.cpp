@@ -5,11 +5,11 @@ public:
         for (int i = 0; i < n; i++) {
             sum += v[i];
             if (sum > mid) {
-                days++;
+                k--;
                 sum = v[i];
             }
         }
-        return days < k;
+        return k>0;
     }
     int shipWithinDays(vector<int>& v, int days) {
         int low = *max_element(v.begin(), v.end()), mid = 0, ans = -1;
