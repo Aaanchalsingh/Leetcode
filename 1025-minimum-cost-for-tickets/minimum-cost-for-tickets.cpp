@@ -14,8 +14,8 @@ public:
         return dp[i] = min({one, week, month});
     }
     int mincostTickets(vector<int>& v, vector<int>& costs) {
-        int n = *max_element(v.begin(), v.end());
-        vector<int> dp(n + 1, -1);
+        int n = v.size()-1;
+        vector<int> dp(v[n] + 1, -1);
         return solve(0, v, costs, dp);
     }
 };
