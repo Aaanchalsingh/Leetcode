@@ -32,10 +32,8 @@ public:
             {1000, "M"}
         };
         
-        string s = to_string(num),ans="";
-        for (int i = s.size() - 1; i >= 0; --i) {
-            ans=makeup((s[i] - '0')*pow(10,k++), mp)+ans;
-        }
+        string ans="";
+        ans=makeup(num, mp);
         return ans;
     }
 };
