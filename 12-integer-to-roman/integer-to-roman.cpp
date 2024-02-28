@@ -14,8 +14,6 @@ public:
         return ans;
     }
 
-    string intToRoman(int num) {
-        int k=0;
         map<int, string> mp = {
             {1, "I"},
             {4, "IV"},
@@ -31,7 +29,8 @@ public:
             {900, "CM"},
             {1000, "M"}
         };
-        
+    string intToRoman(int num) {
+        int k=0;
         string ans="";
         ans=makeup(num, mp);
         return ans;
