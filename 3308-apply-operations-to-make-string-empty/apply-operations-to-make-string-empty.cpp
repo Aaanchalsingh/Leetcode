@@ -3,15 +3,15 @@ public:
     string lastNonEmptyString(string s) {
         int n = s.size(), k = 0;
         string ans = "";
-        unordered_map<char, int> mp;
+        vector<int> v(27,0);
         for (char x : s) {
-            mp[x]++;
-            k = max(k, mp[x]);
+            v[x-'a']++;
+            k = max(k, v[x-'a']);
         }
         for (int i = n - 1; i >= 0; i--) {
-            if (mp[s[i]] == k) {
+            if (v[s[i]-'a'] == k) {
                 ans=s[i]+ans;
-                mp[s[i]]--;
+                v[s[i]-'a']--;
             }
         }
         return ans;
