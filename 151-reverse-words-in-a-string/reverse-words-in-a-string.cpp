@@ -4,12 +4,12 @@ public:
         int n= s.size();
         for(int i=0;i<s.size();i++){
             if(s[i]!=' ') break;
-            s.erase(i,i+1);
+            s.erase(i,1);
             i--;
         }
         for(int i=s.size()-1;i>=0;i--){
             if(s[i]!=' ') break;
-            s.erase(i,i);
+            s.erase(i,1);
         }
         for(int i=0;i<s.size();i++){
             if(s[i]==' '){
